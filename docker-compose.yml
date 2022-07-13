@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  mailer1:
+    container_name: mailer1
+    build: './mailer-1'
+    ports:
+      - 4000:4000
+  
+  mailer2:
+    container_name: mailer2
+    build: './mailer-2'
+    ports:
+      - 5000:5000
+  
+  gateway:
+    container_name: gateway
+    build: './api-gateway'
+    ports:
+      - 10000:10000
+    depends_on:
+      - mailer1
+      - mailer2
